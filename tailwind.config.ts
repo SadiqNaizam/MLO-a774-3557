@@ -1,4 +1,5 @@
 import type { Config } from "tailwindcss";
+import defaultTheme from 'tailwindcss/defaultTheme';
 
 export default {
 	darkMode: ["class"],
@@ -52,6 +53,11 @@ export default {
 					DEFAULT: 'hsl(var(--card))',
 					foreground: 'hsl(var(--card-foreground))'
 				},
+        /* Custom PRD colors mapped to CSS vars */
+        'accent-green': {
+          DEFAULT: 'hsl(var(--accent-green))',
+          foreground: 'hsl(var(--accent-green-foreground))'
+        },
 				sidebar: {
 					DEFAULT: 'hsl(var(--sidebar-background))',
 					foreground: 'hsl(var(--sidebar-foreground))',
@@ -64,10 +70,15 @@ export default {
 				}
 			},
 			borderRadius: {
-				lg: 'var(--radius)',
-				md: 'calc(var(--radius) - 2px)',
-				sm: 'calc(var(--radius) - 4px)'
+        // Existing configuration aligns with PRD (lg for cards, md for default, sm for buttons)
+        // with --radius: 0.5rem in CSS.
+				lg: 'var(--radius)', // 0.5rem (rounded-lg)
+				md: 'calc(var(--radius) - 2px)', // approx 0.375rem (rounded-md)
+				sm: 'calc(var(--radius) - 4px)' // approx 0.25rem (rounded-sm / rounded)
 			},
+      fontFamily: {
+        sans: ['var(--font-sans)', ...defaultTheme.fontFamily.sans],
+      },
 			keyframes: {
 				'accordion-down': {
 					from: {
